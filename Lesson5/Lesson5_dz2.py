@@ -32,7 +32,7 @@ def run_async(func):
 
 
 if __name__ == '__main__':
-    from time import sleep
+
     import urllib.request
     import random
 
