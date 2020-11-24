@@ -66,32 +66,22 @@ class user:
 class admin(user):
 
     @classmethod
-    def update_students(cls):
+    def update_students(cls,name,surname,faculty,gr_no,St_id):
         with dbconnection('univer.db') as conn:
             cursor = conn.cursor()
-            name = input('name')
-            surname = input('surname')
-            faculty = input('faculty')
-            gr_no = input('gr_no')
-            St_id = input('St_id')
             cursor.execute('update students set name = ?,surname =?,faculty=?,gr_no=? where st_id=?', (name,surname,faculty,gr_no,St_id,))
             conn.commit()
 
     @classmethod
-    def insert_students(cls):
+    def insert_students(cls,name,surname,faculty,gr_no,St_id):
         with dbconnection('univer.db') as conn:
             cursor = conn.cursor()
-            name = input('name')
-            surname = input('surname')
-            faculty = input('faculty')
-            gr_no = input('gr_no')
-            St_id = input('St_id')
             cursor.execute('insert into students (name,surname,faculty,gr_no,St_id) values(?,?,?,?,?)', (name,surname,faculty,gr_no,St_id,))
             conn.commit()
 
 # user.get_all_students()
 # user.get_student_by_std_id()
-# user.get_full_info()
+user.get_full_info(1)
 # admin.insert_students()
 # admin.update_students()
 
