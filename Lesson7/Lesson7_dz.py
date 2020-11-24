@@ -81,7 +81,7 @@ class admin(user):
 
 # user.get_all_students()
 # user.get_student_by_std_id()
-user.get_full_info(40586)
+# user.get_full_info(40586)
 # admin.insert_students()
 # admin.update_students()
 

@@ -35,7 +35,7 @@ def get_categories():
     with dbconnection('shop.db') as conn:
         cursor = conn.cursor()
         cursor.execute('SELECT cat_id,Category_name FROM Category')
-        categories = dict(cursor.fetchmany(10))
+        categories = cursor.fetchmany(10)
         return render_template('/categories.html', categories=categories)
 
 
@@ -45,7 +45,7 @@ def get_category_product(category):
     with dbconnection('shop.db') as conn:
         cursor = conn.cursor()
         cursor.execute(f'select p_id,name from Products where Category_id ={category}')
-        products = dict(cursor.fetchmany(10))
+        products = cursor.fetchmany(10)
         return render_template('/products.html', products=products)
 
 @app.route('/products/<string:product>')
@@ -53,7 +53,7 @@ def get_detail_product(product):
     with dbconnection('shop.db') as conn:
         cursor = conn.cursor()
         cursor.execute(f'select instock,q_ty,price from Products where p_id={product} ')
-        product = dict(cursor.fetchmany(10))
+        product = cursor.fetchmany(10)
         return render_template('/product_detail.html', product=product)
 
 
@@ -87,3 +87,4 @@ def get_detail_product(product):
 
 
 app.run(debug=True)
+
