@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{%for product in product%}
+    <h1>Цена - {{product[2]}}</h1>
+    <h1>В наличии  - {{product[0]}}</h1>
+    <h1>Количество  - {{product[1]}}</h1>
+
+{%endfor%}
+</body>
+</html>
