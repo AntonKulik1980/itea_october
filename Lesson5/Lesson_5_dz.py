@@ -3,13 +3,13 @@
 # название потока, является ли поток демоном.
 
 
-from symbol import decorator
+
 from functools import wraps
 import time
 from threading import Thread
-import random
+
 import urllib.request
-from abc import ABC, abstractmethod
+
 
 
 def decorartor(name='first', daemon=False):

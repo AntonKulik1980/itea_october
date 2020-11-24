@@ -1,10 +1,6 @@
-from symbol import decorator
-from functools import wraps
-import time
-from threading import Thread
-import random
+
 import urllib.request
-from abc import ABC, abstractmethod
+
 
 # Создать функцию, которая будет скачивать файл из интернета по
 # ссылке, повесить на неё декоратор, который будет запускать целевую
