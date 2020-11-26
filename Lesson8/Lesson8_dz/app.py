@@ -5,7 +5,7 @@
 # наличии ссылками, при клике на товар выводить его цену, полное описание и
 # кол-во единиц в наличии.
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 
 
@@ -32,7 +32,7 @@ def get_categories():
     with dbconnection('shop.db') as conn:
         cursor = conn.cursor()
         cursor.execute('SELECT cat_id,Category_name FROM Category')
-        categories = dcursor.fetchmany(10)
+        categories = cursor.fetchmany(10)
         return render_template('/categories.html', categories=categories)
 
 
@@ -53,7 +53,11 @@ def get_detail_product(product):
         product = cursor.fetchmany(10)
         return render_template('/product_detail.html', product=product)
 
-
+@app.route('/add_categories', methods=['GET', 'POST'])
+def add_cat():
+    if request.method == 'POST':
+        return redirect(url_for('get_categories'))
+    return render_template('add_cat.html')
 
 
 

@@ -6,10 +6,11 @@
 </head>
 <body>
 
-{{%for car in cars%}}
-<p>model - {{car.model}}, price - {{car.price}}</p>
+{% for car in cars %}
 
-{% enfor %}
+    <p>model - {{car.model}}, price - {{car.price}}</p>
+
+{% endfor %}
 
 </body>
 
