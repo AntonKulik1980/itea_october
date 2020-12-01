@@ -18,13 +18,14 @@ class dbconnection(object):
         return self.conn
 
     def __exit__(self, type, value, traceback):
+        self.conn.commit()
         self.conn.close()
 
 
 app = Flask(__name__)
 
 
-
+cat = []
 
 
 @app.route('/categories/')
@@ -53,14 +54,37 @@ def get_detail_product(product):
         product = cursor.fetchmany(10)
         return render_template('/product_detail.html', product=product)
 
-@app.route('/add_categories', methods=['GET', 'POST'])
+@app.route('/add_cat', methods=['GET', 'POST'])
 def add_cat():
-    if request.method == 'POST':
-        return redirect(url_for('get_categories'))
+    with dbconnection('shop.db') as conn:
+        cursor = conn.cursor()
+        if request.method == 'POST':
+            a = request.form.get('Category_name')
+            cursor.execute(f'insert into Category (category_name) values ("{a}")')
+
+            return redirect(url_for('get_categories'))
     return render_template('add_cat.html')
 
+@app.route('/add_prod', methods=['GET', 'POST'])
+def add_prod():
+    with dbconnection('shop.db') as conn:
+        cursor = conn.cursor()
+        if request.method == 'POST':
+            a = request.form.get('name')
+            b = request.form.get('instok')
+            c = request.form.get('Q_ty')
+            d = request.form.get('Category_id')
+            e = request.form.get('Price')
+            cursor.execute(f'insert into Products (name,instok,Q_ty,Category_id,Price) values ("{a}","{b}","{c}","{d}",'
+                           f'"{e}")')
+
+            return redirect(url_for('get_categories'))
+    return render_template('add_prod.html')
 
 
 
 
-app.run(debug=True)
+
+
+
+app.run(debug=True,port=8000)
