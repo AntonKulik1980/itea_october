@@ -12,5 +12,5 @@ class File(object):
         self.file_obj.close()
 
 
-with File('demo.txt', 'w') as opened_file:
+with File('../demo.txt', 'w') as opened_file:
     opened_file.write('Hello, world!')
